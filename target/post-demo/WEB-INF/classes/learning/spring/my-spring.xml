@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="postServiceImp" class="com.lgj.service.PostServiceImp"/>
+    <bean id="postServiceImp2" class="com.lgj.service.PostServiceImp2"/>
+
+    <bean id="pAuthor" class="com.lgj.entity.PAuthor">
+        <constructor-arg index="0" value="1" />
+        <constructor-arg index="1" value="小明" />
+        <constructor-arg index="2" value="男" />
+        <constructor-arg index="3" value="18462847284" />
+        <constructor-arg index="4" value="苏对岸僵尸洞" />
+    </bean>
+
+    <bean id="post" class="com.lgj.entity.PPost">
+        <constructor-arg index="0" value="1" />
+        <constructor-arg index="1" value="1" />
+        <constructor-arg index="2" value="张东明带妹吃鸡" />
+        <constructor-arg index="3" value="装b不成反被捶，落地成盒" />
+        <constructor-arg index="4" value="2018-12-13" />
+    </bean>
+
+    <bean id="authorPost" class="com.lgj.entity.PAuthor" parent="pAuthor">
+        <property name="pPost" ref="post"/>
+    </bean>
+
+    <bean id="pAuthor2" class="com.lgj.entity.PAuthor">
+        <property name="pPostList">
+            <list>
+                <value>pAuthor</value>
+            </list>
+        </property>
+    </bean>
+</beans>

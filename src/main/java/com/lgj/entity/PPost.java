@@ -13,6 +13,9 @@ public class PPost {
 
     private Date post_time;
 
+    public PPost() {
+    }
+
     public PPost(Integer post_id, Integer author_id, String post_caption, String post_content, Date post_time) {
         this.post_id = post_id;
         this.author_id = author_id;

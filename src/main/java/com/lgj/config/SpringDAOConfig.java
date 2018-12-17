@@ -15,15 +15,14 @@ import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 
 @Configuration
-@PropertySource(value = {"classpath:jdbc.properties"},ignoreResourceNotFound = true)
 public class SpringDAOConfig {
     @Bean("dataSource")
     public DataSource dataSource() throws PropertyVetoException {
         ComboPooledDataSource source = new ComboPooledDataSource();
-        source.setDriverClass("${jdbc.driver}");
-        source.setJdbcUrl("${jdbc.url}");
-        source.setUser("${jdbc.user}");
-        source.setPassword("${jdbc.password}");
+        source.setDriverClass("org.mariadb.jdbc.Driver");
+        source.setJdbcUrl("jdbc:mariadb://localhost:3308/bookdb");
+        source.setUser("root");
+        source.setPassword("123456");
 
         return source;
     }
@@ -33,7 +32,7 @@ public class SpringDAOConfig {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(this.dataSource());
         factoryBean.setTypeAliasesPackage("com.lgj.entity");
-        factoryBean.setConfigLocation(new ClassPathResource("mybatis"));
+        factoryBean.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
         Resource[] resources = {
                 new ClassPathResource("mappers/PAuthorMapper.xml"),
                 new ClassPathResource("mappers/PPostMapper.xml")
